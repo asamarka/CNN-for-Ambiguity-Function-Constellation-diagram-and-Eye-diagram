@@ -1,18 +1,18 @@
 clear;clc 
-snr = 20;
+snr = 15;
 modulation =[ 8, 16, 32];
-ml= dictionary(1, "test", 3, "train");
-base_path =sprintf('/Users/asamarka/paper/data/fusion/paper/%dc',snr);
+ml= dictionary(150, "test", 350, "train");
+base_path =sprintf('/Users/asamarka/paper/data/LAST/%dc',snr);
 disp(base_path);
 mkdir(sprintf('%dc', snr));
 cd (sprintf('%dc', snr))
-for operation= [1 3]
+for operation= [150 350]
     for p =1:length(modulation)
         mkdir(sprintf('%s/%d',ml(operation), modulation(p)))
     end    
 end
 channel = comm.AWGNChannel('NoiseMethod','Signal to noise ratio (SNR)','SNR',snr);
-for m = [1 3]
+for m = [150 350]
     for j=1:length(modulation)
         M = modulation(j);
         k = log2(M);
