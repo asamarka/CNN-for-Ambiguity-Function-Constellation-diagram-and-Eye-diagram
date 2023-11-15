@@ -1,13 +1,13 @@
 clear;clc 
-snr = 20;
+snr = 15;
 modulation =[ 8, 16, 32];
-ml= dictionary(1, "test", 3, "train");
-base_path =sprintf('/Users/asamarka/paper/data/fusion/paper/eye%d',snr);
+ml= dictionary(150, "test", 350, "train");
+base_path =sprintf('/Users/asamarka/paper/data/LAST/eye%d',snr);
 disp(base_path);
 mkdir(sprintf('eye%d', snr));
 cd (sprintf('eye%d', snr))
 %
-for operation= [1 3]
+for operation= [150 350]
     for p =1:length(modulation)
         mkdir(sprintf('%s/%d',ml(operation), modulation(p)))
     end    
@@ -23,7 +23,7 @@ txfilter = comm.RaisedCosineTransmitFilter(...
     'RolloffFactor',beta, ...
     'FilterSpanInSymbols',Nsym, ...
     'OutputSamplesPerSymbol',sampsPerSym);
- for m = [1 3]
+ for m = [150 350]
     for j=1:length(modulation)
         M = modulation(j);
         for i = 1:m
